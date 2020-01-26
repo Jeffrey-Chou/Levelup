@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Precompiled.cpp">
+      <Filter>Precompiled</Filter>
+    </ClCompile>
+    <ClCompile Include="Screens\BaseScreen.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="KartGame.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Screens\MainMenuScreen\MainMenuScreen.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Screens\GameScreen\GameScreen.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Screens\Button.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Precompiled">
+      <UniqueIdentifier>{92f1c73a-c2ea-4322-afec-74c388668350}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{f55d1e5a-f990-450b-9e12-49a890028c4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{676efab4-0876-422c-8920-42cb42135fee}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Precompiled.h">
+      <Filter>Precompiled</Filter>
+    </ClInclude>
+    <ClInclude Include="Screens\BaseScreen.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="KartGame.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Screens\MainMenuScreen\MainMenuScreen.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Screens\Button.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Screens\GameScreen\GameScreen.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
