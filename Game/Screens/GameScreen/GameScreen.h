@@ -12,7 +12,8 @@ public:
 	virtual void Update();
 	virtual void Render(sf::RenderWindow* window);
 private:
-	RaceCar mCar;
+	RaceCar mCar1;
+	RaceCar mCar2;
 };
 
 }

@@ -21,6 +21,7 @@ RaceCar::RaceCar(const sf::Vector2f& size, const sf::Vector2f& position, const s
 	mBody.setPosition(position);
 	mBody.setOutlineColor(color);
 	mBody.setFillColor(color);
+	mKeys.reserve(static_cast<size_t>(KeyBinding::size));
 }
 void RaceCar::Update() {
 	if(mIsAccelerating) {
@@ -47,13 +48,38 @@ void RaceCar::Update() {
 	
 }
 
+
+
 const sf::RectangleShape & RaceCar::GetBody() const {
 	return mBody;
 }
 
-bool RaceCar::HandleKeyPressed(sf::Keyboard::Key code)
-{
-	return false;
+bool RaceCar::HandleKeyEvent(sf::Keyboard::Key code, bool flag) {
+	KeyBinding binding = KeyBinding::size;
+	for(const auto key : mKeys) {
+		if(key.first == code) {
+			binding = key.second;
+			break;
+		}
+	}
+	switch(binding) {
+	case KeyBinding::up:
+		SetIsAccelerating(flag);
+		break;
+	case KeyBinding::left:
+		SetTurningLeft(flag);
+		break;
+	case KeyBinding::right:
+		SetTurningRight(flag);
+		break;
+	default:
+		return false;
+	}
+	return true;
+}
+
+void RaceCar::AddKeyBinding(sf::Keyboard::Key key, KeyBinding binding) {
+	mKeys.push_back(std::pair<sf::Keyboard::Key, KeyBinding>(key, binding));
 }
 
 void RaceCar::SetIsAccelerating(const bool accelerate) {
