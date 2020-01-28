@@ -41,8 +41,8 @@ const sf::Text & Button::GetText() const {
 }
 
 bool Button::HasMouseOver(const sf::Vector2f & mousePos) {
-	sf::Vector2f buttonPos = mShape.getPosition();
-	sf::Vector2f buttonSize = mShape.getSize();
+	const sf::Vector2f& buttonPos = mShape.getPosition();
+	const sf::Vector2f& buttonSize = mShape.getSize();
 	if(mousePos.x >= buttonPos.x && mousePos.x <= buttonPos.x + buttonSize.x) {
 		if(mousePos.y >= buttonPos.y && mousePos.y <= buttonPos.y + buttonSize.y) {
 			return true;

@@ -22,6 +22,7 @@
     <ClCompile Include="Screens\Button.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Screens\GameScreen\RaceCar.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Precompiled">
@@ -51,6 +52,9 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="Screens\GameScreen\GameScreen.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Screens\GameScreen\RaceCar.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>

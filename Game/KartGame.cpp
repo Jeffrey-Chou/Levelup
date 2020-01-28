@@ -10,6 +10,7 @@ namespace KartGame {
 
 KartGame::KartGame() {
 	mWindow = std::make_unique<sf::RenderWindow>(sf::VideoMode(1024, 768), "Kart Game", sf::Style::Default);
+	mWindow->setFramerateLimit(60);
 	mScreenStack.push(std::make_unique<MainMenuScreen>(std::bind(&KartGame::AddGameScreen, this)));
 	BaseScreen::LoadFont();
 }
@@ -23,7 +24,7 @@ void KartGame::Run() {
 		{
 			currentScreen->HandleEvent(mWindow.get(), event);
 		}
-
+		currentScreen->Update();
 		currentScreen->Render(mWindow.get());
 		//mWindow->clear();
 

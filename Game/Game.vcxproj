@@ -205,6 +205,7 @@ xcopy /y /d  "$(SolutionDir)Externals\SFML\$(PlatformShortName)\bin\sfml-window-
     <ClCompile Include="Screens\BaseScreen.cpp" />
     <ClCompile Include="Screens\Button.cpp" />
     <ClCompile Include="Screens\GameScreen\GameScreen.cpp" />
+    <ClCompile Include="Screens\GameScreen\RaceCar.cpp" />
     <ClCompile Include="Screens\MainMenuScreen\MainMenuScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +214,7 @@ xcopy /y /d  "$(SolutionDir)Externals\SFML\$(PlatformShortName)\bin\sfml-window-
     <ClInclude Include="Screens\BaseScreen.h" />
     <ClInclude Include="Screens\Button.h" />
     <ClInclude Include="Screens\GameScreen\GameScreen.h" />
+    <ClInclude Include="Screens\GameScreen\RaceCar.h" />
     <ClInclude Include="Screens\MainMenuScreen\MainMenuScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

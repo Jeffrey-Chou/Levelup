@@ -19,6 +19,10 @@ void MainMenuScreen::HandleEvent(sf::RenderWindow * window, const sf::Event & ev
 	}
 }
 
+void MainMenuScreen::Update()
+{
+}
+
 void MainMenuScreen::Render(sf::RenderWindow * window) {
 	window->clear();
 	window->draw(mTitle);
