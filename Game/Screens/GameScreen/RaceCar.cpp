@@ -5,9 +5,10 @@
 
 namespace KartGame {
 
-const float RaceCar::MAX_SPEED = 15.f;
-const float RaceCar::PI = 3.141592654f;
-const float RaceCar::MAX_DEGREE = 10.f;
+//const float RaceCar::MAX_SPEED = 10.f;
+//const float RaceCar::OFFROAD_SPEED = 5.f;
+//const float RaceCar::PI = 3.141592654f;
+//const float RaceCar::MAX_DEGREE = 10.f;
 
 RaceCar::RaceCar(const sf::Vector2f& size, const sf::Vector2f& position, const sf::Color& color) {
 	//mBody.setSize(sf::Vector2f(100.0f, 100.0f));
@@ -23,12 +24,18 @@ RaceCar::RaceCar(const sf::Vector2f& size, const sf::Vector2f& position, const s
 	mBody.setFillColor(color);
 	mKeys.reserve(static_cast<size_t>(KeyBinding::size));
 }
-void RaceCar::Update() {
-	if(mIsAccelerating) {
-		mSpeed = mSpeed < MAX_SPEED ? mSpeed + 1.f : MAX_SPEED;
+void RaceCar::Update(const Track& track) {
+	if(IsOffTrack(track)) {
+		mCurrentMax = OFFROAD_SPEED;
 	}
 	else {
-		mSpeed = mSpeed > 0.f ? mSpeed - 1.f : 0;
+		mCurrentMax = MAX_SPEED;
+	}
+	if(mIsAccelerating) {
+		mSpeed = mSpeed < mCurrentMax ? mSpeed + 0.25f : mCurrentMax;
+	}
+	else {
+		mSpeed = mSpeed > 0.f ? mSpeed - 0.25f : 0;
 	}
 	if(mIsTurningRight) {
 		mDegree = mDegree < MAX_DEGREE ? mDegree + 0.25f : MAX_DEGREE;
@@ -92,6 +99,36 @@ void RaceCar::SetTurningRight(const bool turning) {
 
 void RaceCar::SetTurningLeft(const bool turning) {
 	mIsTurningLeft = turning;
+}
+
+bool RaceCar::IsOffTrack(const Track & track) {
+	std::vector<float> distances;
+	bool isInCircle = false;
+	distances.reserve(4);
+	const sf::FloatRect carBounds = mBody.getGlobalBounds();
+	for(const sf::CircleShape& track : track.GetTrack()) {
+		const sf::Vector2f& trackOrigin = track.getPosition();
+		float innerRadius = track.getRadius() + track.getOutlineThickness();
+		//float distance = std::hypot(trackOrigin.x - carBounds.left, trackOrigin.y - carBounds.top);
+		CalculateDistances(distances, trackOrigin, carBounds);
+		for(float distance : distances) {
+			if(distance < track.getRadius()) {
+				isInCircle = true;
+			}
+			if(distance < innerRadius) {
+				return true;
+			}
+		}
+		distances.clear();
+	}
+	return false;
+}
+
+void RaceCar::CalculateDistances(std::vector<float>& distances, const sf::Vector2f& origin, const sf::FloatRect & bounds) {
+	distances.push_back(std::hypot(origin.x - bounds.left, origin.y - bounds.top));
+	distances.push_back(std::hypot(origin.x - bounds.left + bounds.width, origin.y - bounds.top));
+	distances.push_back(std::hypot(origin.x - bounds.left, origin.y - bounds.top + bounds.height));
+	distances.push_back(std::hypot(origin.x - bounds.left + bounds.width, origin.y - bounds.top + bounds.height));
 }
 
 

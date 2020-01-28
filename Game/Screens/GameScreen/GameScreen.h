@@ -2,6 +2,7 @@
 
 #include "../BaseScreen.h"
 #include "RaceCar.h"
+#include "Track.h"
 
 namespace KartGame {
 
@@ -14,6 +15,7 @@ public:
 private:
 	RaceCar mCar1;
 	RaceCar mCar2;
+	Track mTrack;
 };
 
 }
