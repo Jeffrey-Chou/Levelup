@@ -24,8 +24,11 @@ void KartGame::Run() {
 		{
 			currentScreen->HandleEvent(mWindow.get(), event);
 		}
-		currentScreen->Update();
+		bool popScreen = currentScreen->Update();
 		currentScreen->Render(mWindow.get());
+		if(popScreen) {
+			mScreenStack.pop();
+		}
 		//mWindow->clear();
 
 		//RenderSquare(*mWindow);

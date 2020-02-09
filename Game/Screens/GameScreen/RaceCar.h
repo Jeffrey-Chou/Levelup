@@ -20,6 +20,8 @@ public:
 	void SetTurningRight(const bool turning);
 	void SetTurningLeft(const bool turning);
 
+	void IncrementLap(const Track& track);
+	int GetLap() const;
 	bool IsOffTrack(const Track& track);
 	void CalculateDistances(std::vector<float>& distances, const sf::Vector2f& origin, const sf::FloatRect& bounds);
 private:
@@ -30,6 +32,8 @@ private:
 	float mDegree = 0;
 	float mSpeed = 0.f;
 	float mCurrentMax = MAX_SPEED;
+	int mLap = 1;
+	int mCheckpoint = 1;
 	static constexpr float MAX_SPEED = 10.f;
 	static constexpr float OFFROAD_SPEED = 3.f;
 	static constexpr float PI = 3.141592654f;;

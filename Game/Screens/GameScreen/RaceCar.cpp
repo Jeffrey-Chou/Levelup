@@ -52,6 +52,8 @@ void RaceCar::Update(const Track& track) {
 		mBody.rotate(mDegree);
 		mBody.move(sf::Vector2f(std::sinf(mBody.getRotation() * PI / 180) * mSpeed, -std::cosf(mBody.getRotation() * PI / 180) * mSpeed));
 	}
+
+	IncrementLap(track);
 	
 }
 
@@ -99,6 +101,27 @@ void RaceCar::SetTurningRight(const bool turning) {
 
 void RaceCar::SetTurningLeft(const bool turning) {
 	mIsTurningLeft = turning;
+}
+
+void RaceCar::IncrementLap(const Track & track) {
+	const int flagNumber = track.GetFlags().size();
+	const sf::FloatRect carBounds = mBody.getGlobalBounds();
+	for(int i = 0; i < flagNumber; ++i) {
+		if(track.GetFlags().at(i).getGlobalBounds().intersects(carBounds)) {
+			if(i == 0 && mCheckpoint / flagNumber == 1) {
+				++mLap;
+				--mCheckpoint;
+			}
+			if(i == 1 && mCheckpoint / flagNumber == 0) {
+				++mCheckpoint;
+			}
+		}
+	}
+}
+
+int RaceCar::GetLap() const
+{
+	return mLap;
 }
 
 bool RaceCar::IsOffTrack(const Track & track) {

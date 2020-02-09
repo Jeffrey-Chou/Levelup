@@ -24,17 +24,34 @@ Track::Track() {
 	shape2.move(750.f, 400.f);
 	mTracks.push_back(shape);
 	mTracks.push_back(shape2);
+
+	sf::RectangleShape flag1(sf::Vector2f(120, 80));
+	flag1.setFillColor(sf::Color::White);
+	flag1.setPosition(40, 350);
+
+	sf::RectangleShape flag2(sf::Vector2f(120, 80));
+	flag2.setFillColor(sf::Color::White);
+	flag2.setPosition(900, 350);
+	mFlags.push_back(flag1);
+	mFlags.push_back(flag2);
 }
 
 void Track::RenderTrack(sf::RenderWindow * window) {
 	for(const sf::CircleShape& track : mTracks) {
 		window->draw(track);
 	}
+	for(const sf::RectangleShape& flag : mFlags) {
+		window->draw(flag);
+	}
 }
 
 const std::vector<sf::CircleShape>& Track::GetTrack() const
 {
 	return mTracks;
+}
+
+const std::vector<sf::RectangleShape>& Track::GetFlags() const {
+	return mFlags;
 }
 
 }

@@ -19,8 +19,8 @@ void MainMenuScreen::HandleEvent(sf::RenderWindow * window, const sf::Event & ev
 	BaseScreen::HandleEvent(window, event);
 }
 
-void MainMenuScreen::Update()
-{
+bool MainMenuScreen::Update() {
+	return false;
 }
 
 void MainMenuScreen::Render(sf::RenderWindow * window) {

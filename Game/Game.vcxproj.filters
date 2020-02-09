@@ -22,8 +22,12 @@
     <ClCompile Include="Screens\Button.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Screens\GameScreen\RaceCar.cpp" />
-    <ClCompile Include="Screens\GameScreen\Track.cpp" />
+    <ClCompile Include="Screens\GameScreen\Track.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Screens\GameScreen\RaceCar.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Precompiled">

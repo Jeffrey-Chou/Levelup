@@ -10,12 +10,15 @@ class GameScreen : public BaseScreen {
 public:
 	GameScreen();
 	virtual void HandleEvent(sf::RenderWindow* window, const sf::Event& event);
-	virtual void Update();
+	virtual bool Update();
 	virtual void Render(sf::RenderWindow* window);
 private:
 	RaceCar mCar1;
 	RaceCar mCar2;
 	Track mTrack;
+	sf::Text mResult;
+	bool mFinished = false;
+	bool mExitGame = false;
 };
 
 }

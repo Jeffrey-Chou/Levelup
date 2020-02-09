@@ -9,7 +9,7 @@ public:
 	BaseScreen() = default;
 	virtual ~BaseScreen() = default;
 	virtual void HandleEvent(sf::RenderWindow* window, const sf::Event& event);
-	virtual void Update() = 0;
+	virtual bool Update() = 0;
 	virtual void Render(sf::RenderWindow* window);
 
 	static std::unique_ptr<sf::Font> FONT;

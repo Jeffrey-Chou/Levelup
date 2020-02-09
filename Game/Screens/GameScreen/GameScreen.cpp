@@ -14,20 +14,41 @@ KartGame::GameScreen::GameScreen()
 }
 
 void KartGame::GameScreen::HandleEvent(sf::RenderWindow * window, const sf::Event & event) {
-	if(event.type == sf::Event::KeyPressed) {
-		mCar1.HandleKeyEvent(event.key.code, true);
-		mCar2.HandleKeyEvent(event.key.code, true);
+	if(!mFinished) {
+		if(event.type == sf::Event::KeyPressed) {
+			mCar1.HandleKeyEvent(event.key.code, true);
+			mCar2.HandleKeyEvent(event.key.code, true);
+		}
+		else if(event.type == sf::Event::KeyReleased) {
+			mCar1.HandleKeyEvent(event.key.code, false);
+			mCar2.HandleKeyEvent(event.key.code, false);
+		}
 	}
-	else if(event.type == sf::Event::KeyReleased) {
-		mCar1.HandleKeyEvent(event.key.code, false);
-		mCar2.HandleKeyEvent(event.key.code, false);
+	else {
+		if(event.type == sf::Event::MouseButtonPressed) {
+			mExitGame = true;
+		}
 	}
 	BaseScreen::HandleEvent(window, event);
 }
 
-void KartGame::GameScreen::Update() {
+bool KartGame::GameScreen::Update() {
 	mCar1.Update(mTrack);
 	mCar2.Update(mTrack);
+	if(!mFinished) {
+		if(mCar1.GetLap() > 3 && mCar2.GetLap() > 3) {
+			BaseScreen::SetText(mResult, "fight to the death", sf::Vector2f(50.0f, 10.0f), sf::Color::Green);
+		}
+		else if(mCar1.GetLap() > 3) {
+			mFinished = true;
+			BaseScreen::SetText(mResult, "P1 is a winner", sf::Vector2f(50.0f, 10.0f), sf::Color::Green);
+		}
+		else if(mCar2.GetLap() > 3) {
+			mFinished = true;
+			BaseScreen::SetText(mResult, "P2 is a winner", sf::Vector2f(50.0f, 10.0f), sf::Color::Green);
+		}
+	}
+	return mExitGame;
 }
 
 void KartGame::GameScreen::Render(sf::RenderWindow * window) {
@@ -37,6 +58,8 @@ void KartGame::GameScreen::Render(sf::RenderWindow * window) {
 	mTrack.RenderTrack(window);
 	window->draw(mCar1.GetBody());
 	window->draw(mCar2.GetBody());
-	
+	if(mFinished) {
+		window->draw(mResult);
+	}
 	window->display();
 }
