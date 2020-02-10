@@ -2,6 +2,7 @@
 #include "RaceCar.h"
 
 #include <cmath>
+#include <iostream>
 
 namespace KartGame {
 
@@ -32,7 +33,7 @@ void RaceCar::Update(const Track& track) {
 		mCurrentMax = MAX_SPEED;
 	}
 	if(mIsAccelerating) {
-		mSpeed = mSpeed < mCurrentMax ? mSpeed + 0.25f : mCurrentMax;
+		mSpeed = mSpeed < mCurrentMax ? mSpeed + 0.15f : mCurrentMax;
 	}
 	else {
 		mSpeed = mSpeed > 0.f ? mSpeed - 0.25f : 0;
@@ -56,8 +57,6 @@ void RaceCar::Update(const Track& track) {
 	IncrementLap(track);
 	
 }
-
-
 
 const sf::RectangleShape & RaceCar::GetBody() const {
 	return mBody;
@@ -125,34 +124,20 @@ int RaceCar::GetLap() const
 }
 
 bool RaceCar::IsOffTrack(const Track & track) {
-	std::vector<float> distances;
 	bool isInCircle = false;
-	distances.reserve(4);
-	const sf::FloatRect carBounds = mBody.getGlobalBounds();
+	sf::Vector2f carPos = mBody.getPosition();
 	for(const sf::CircleShape& track : track.GetTrack()) {
 		const sf::Vector2f& trackOrigin = track.getPosition();
 		float innerRadius = track.getRadius() + track.getOutlineThickness();
-		//float distance = std::hypot(trackOrigin.x - carBounds.left, trackOrigin.y - carBounds.top);
-		CalculateDistances(distances, trackOrigin, carBounds);
-		for(float distance : distances) {
-			if(distance < track.getRadius()) {
-				isInCircle = true;
-			}
-			if(distance < innerRadius) {
-				return true;
-			}
+		float distance = std::hypotf(trackOrigin.x - carPos.x, trackOrigin.y - carPos.y);
+		if(distance < track.getRadius()) {
+			isInCircle = true;
 		}
-		distances.clear();
+		if(distance < innerRadius) {
+			return true;
+		}
 	}
-	return false;
+	return !isInCircle;
 }
-
-void RaceCar::CalculateDistances(std::vector<float>& distances, const sf::Vector2f& origin, const sf::FloatRect & bounds) {
-	distances.push_back(std::hypot(origin.x - bounds.left, origin.y - bounds.top));
-	distances.push_back(std::hypot(origin.x - bounds.left + bounds.width, origin.y - bounds.top));
-	distances.push_back(std::hypot(origin.x - bounds.left, origin.y - bounds.top + bounds.height));
-	distances.push_back(std::hypot(origin.x - bounds.left + bounds.width, origin.y - bounds.top + bounds.height));
-}
-
 
 }

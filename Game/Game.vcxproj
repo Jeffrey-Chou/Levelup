@@ -124,7 +124,7 @@ xcopy /y /d  "$(SolutionDir)Externals\SFML\$(PlatformShortName)\bin\sfml-window-
       <AdditionalLibraryDirectories>$(SolutionDir)Externals\SFML\$(PlatformShortName)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-audio-d.lib;sfml-graphics-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\_Build\$(PlatformShortName)\$(Configuration)\$(ProjectName)$(TargetExt)</OutputFile>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
     <PostBuildEvent>

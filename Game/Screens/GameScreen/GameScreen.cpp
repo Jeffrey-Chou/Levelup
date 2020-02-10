@@ -2,8 +2,8 @@
 #include "GameScreen.h"
 
 KartGame::GameScreen::GameScreen()
-	: mCar1(sf::Vector2f(20.0f, 30.0f), sf::Vector2f(60.0f, 400.0f), sf::Color::Green)
-	, mCar2(sf::Vector2f(20.0f, 30.0f), sf::Vector2f(100.0f, 400.0f), sf::Color::Red) {
+	: mCar1(sf::Vector2f(20.0f, 30.0f), sf::Vector2f(80.0f, 400.0f), sf::Color::Green)
+	, mCar2(sf::Vector2f(20.0f, 30.0f), sf::Vector2f(120.0f, 400.0f), sf::Color::Red) {
 	mCar1.AddKeyBinding(sf::Keyboard::W, KeyBinding::up);
 	mCar1.AddKeyBinding(sf::Keyboard::A, KeyBinding::left);
 	mCar1.AddKeyBinding(sf::Keyboard::D, KeyBinding::right);

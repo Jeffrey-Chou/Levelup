@@ -23,7 +23,7 @@ public:
 	void IncrementLap(const Track& track);
 	int GetLap() const;
 	bool IsOffTrack(const Track& track);
-	void CalculateDistances(std::vector<float>& distances, const sf::Vector2f& origin, const sf::FloatRect& bounds);
+
 private:
 	sf::RectangleShape mBody;
 	bool mIsAccelerating = false;
@@ -35,7 +35,7 @@ private:
 	int mLap = 1;
 	int mCheckpoint = 1;
 	static constexpr float MAX_SPEED = 10.f;
-	static constexpr float OFFROAD_SPEED = 3.f;
+	static constexpr float OFFROAD_SPEED = 1.f;
 	static constexpr float PI = 3.141592654f;;
 	static constexpr float MAX_DEGREE = 10.f;
 	std::vector<std::pair<sf::Keyboard::Key, KeyBinding>> mKeys;
