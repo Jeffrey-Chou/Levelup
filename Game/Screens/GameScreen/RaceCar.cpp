@@ -53,6 +53,22 @@ void RaceCar::Update(const Track& track) {
 		mBody.rotate(mDegree);
 		mBody.move(sf::Vector2f(std::sinf(mBody.getRotation() * PI / 180) * mSpeed, -std::cosf(mBody.getRotation() * PI / 180) * mSpeed));
 	}
+	sf::Vector2f pos = mBody.getPosition();
+	if(pos.y < mBody.getSize().y / 2) {
+		mBody.move(0, 1);
+	}
+
+	if(pos.y > 768 - mBody.getSize().y / 2) {
+		mBody.move(0, -1);
+	}
+
+	if(pos.x < mBody.getSize().y / 2) {
+		mBody.move(1, 0);
+	}
+
+	if(pos.x > 1024 - mBody.getSize().y / 2) {
+		mBody.move(-1, 0);
+	}
 
 	IncrementLap(track);
 	
@@ -138,6 +154,14 @@ bool RaceCar::IsOffTrack(const Track & track) {
 		}
 	}
 	return !isInCircle;
+}
+
+void RaceCar::HandleCollision(const RaceCar & otherCar) {
+	sf::FloatRect carBounds = mBody.getGlobalBounds();
+	if(otherCar.GetBody().getGlobalBounds().intersects(carBounds)) {
+		mSpeed -= mCurrentMax;
+		mBody.move(sf::Vector2f(std::sinf(mBody.getRotation() * PI / 180) * mSpeed, -std::cosf(mBody.getRotation() * PI / 180) * mSpeed));
+	}
 }
 
 }

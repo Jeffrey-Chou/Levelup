@@ -23,6 +23,7 @@ public:
 	void IncrementLap(const Track& track);
 	int GetLap() const;
 	bool IsOffTrack(const Track& track);
+	void HandleCollision(const RaceCar& otherCar);
 
 private:
 	sf::RectangleShape mBody;
