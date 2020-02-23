@@ -156,11 +156,25 @@ bool RaceCar::IsOffTrack(const Track & track) {
 	return !isInCircle;
 }
 
-void RaceCar::HandleCollision(const RaceCar & otherCar) {
+void RaceCar::CheckCollision(const RaceCar & otherCar) {
 	sf::FloatRect carBounds = mBody.getGlobalBounds();
 	if(otherCar.GetBody().getGlobalBounds().intersects(carBounds)) {
-		mSpeed -= mCurrentMax;
-		mBody.move(sf::Vector2f(std::sinf(mBody.getRotation() * PI / 180) * mSpeed, -std::cosf(mBody.getRotation() * PI / 180) * mSpeed));
+		//mSpeed -= mCurrentMax;
+		// faster car collided with other car
+		if(mSpeed > otherCar.mSpeed) {
+			mCollisionForce = sf::Vector2f(std::sinf(mBody.getRotation() * PI / 180) * -mSpeed * 10, -std::cosf(mBody.getRotation() * PI / 180) * -mSpeed * 10);
+		}
+		else {
+			mCollisionForce = sf::Vector2f(std::sinf(otherCar.mBody.getRotation() * PI / 180) * otherCar.mSpeed * 10, -std::cosf(otherCar.mBody.getRotation() * PI / 180) * otherCar.mSpeed * 10);
+		}
+		
+	}
+}
+
+void RaceCar::HandleCollision() {
+	if(mCollisionForce.x || mCollisionForce.y) {
+		mBody.move(mCollisionForce);
+		mCollisionForce.x = mCollisionForce.y = 0.f;
 	}
 }
 
