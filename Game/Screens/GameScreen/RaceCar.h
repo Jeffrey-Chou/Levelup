@@ -23,6 +23,8 @@ public:
 	void IncrementLap(const Track& track);
 	int GetLap() const;
 	bool IsOffTrack(const Track& track);
+	void CheckCollision(const RaceCar& otherCar);
+	void HandleCollision();
 
 private:
 	sf::RectangleShape mBody;
@@ -31,6 +33,7 @@ private:
 	bool mIsTurningLeft = false;
 	float mDegree = 0;
 	float mSpeed = 0.f;
+	sf::Vector2f mCollisionForce;
 	float mCurrentMax = MAX_SPEED;
 	int mLap = 1;
 	int mCheckpoint = 1;

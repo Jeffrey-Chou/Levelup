@@ -35,6 +35,10 @@ void KartGame::GameScreen::HandleEvent(sf::RenderWindow * window, const sf::Even
 bool KartGame::GameScreen::Update() {
 	mCar1.Update(mTrack);
 	mCar2.Update(mTrack);
+	mCar1.CheckCollision(mCar2);
+	mCar2.CheckCollision(mCar1);
+	mCar1.HandleCollision();
+	mCar2.HandleCollision();
 	if(!mFinished) {
 		if(mCar1.GetLap() > 3 && mCar2.GetLap() > 3) {
 			BaseScreen::SetText(mResult, "fight to the death", sf::Vector2f(50.0f, 10.0f), sf::Color::Green);
