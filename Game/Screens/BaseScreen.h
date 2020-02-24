@@ -14,7 +14,7 @@ public:
 
 	static std::unique_ptr<sf::Font> FONT;
 	static void LoadFont();
-	static void SetText(sf::Text& text, const sf::String& str, const sf::Vector2f& position, const sf::Color& color);
+	static void SetText(sf::Text& text, const sf::String& str, const sf::Vector2f& position, unsigned int size, const sf::Color& color);
 
 private: 
 };

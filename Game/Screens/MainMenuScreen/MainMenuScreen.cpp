@@ -4,9 +4,9 @@ namespace KartGame {
 MainMenuScreen::MainMenuScreen(std::function<void()> func)
 	: mPlayButton(sf::Vector2f(250.0f, 150.0f), sf::Vector2f(375.0f, 500.0f), sf::Color::Green){
 
-	BaseScreen::SetText(mTitle, "Kart Game", sf::Vector2f(50.0f, 10.0f), sf::Color::Green);
+	BaseScreen::SetText(mTitle, "Kart Game", sf::Vector2f(50.0f, 10.0f), 100, sf::Color::Green);
 	mTitle.setPosition(256, 200);
-	BaseScreen::SetText(mPlayButton.GetText(), "Start", mPlayButton.GetShape().getPosition(), sf::Color::White);
+	BaseScreen::SetText(mPlayButton.GetText(), "Start", mPlayButton.GetShape().getPosition(), 100, sf::Color::White);
 	mPlayButton.BindFunction(func);
 }
 void MainMenuScreen::HandleEvent(sf::RenderWindow * window, const sf::Event & event) {

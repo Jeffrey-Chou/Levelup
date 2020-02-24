@@ -6,6 +6,8 @@
 
 namespace KartGame {
 
+enum class GameState { Start, CountDown, RaceTime, Finished, Exit};
+
 class GameScreen : public BaseScreen {
 public:
 	GameScreen();
@@ -16,9 +18,13 @@ private:
 	RaceCar mCar1;
 	RaceCar mCar2;
 	Track mTrack;
-	sf::Text mResult;
-	bool mFinished = false;
-	bool mExitGame = false;
+	sf::Text mGameText;
+	sf::Clock mClock;
+	sf::Time mTime;
+	std::string mTextString;
+	GameState mState = GameState::Start;
+	//bool mFinished = false;
+	//bool mExitGame = false;
 };
 
 }

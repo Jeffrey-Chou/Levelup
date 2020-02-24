@@ -23,10 +23,10 @@ void BaseScreen::LoadFont() {
 	}
 }
 
-void BaseScreen::SetText(sf::Text & text, const sf::String & str, const sf::Vector2f & position, const sf::Color & color) {
+void BaseScreen::SetText(sf::Text & text, const sf::String & str, const sf::Vector2f & position, unsigned int size, const sf::Color & color) {
 	text.setFont(*FONT);
 	text.setString(str);
-	text.setCharacterSize(100);
+	text.setCharacterSize(size);
 	text.setPosition(position);
 	text.setFillColor(color);
 	text.setStyle(sf::Text::Bold);
